@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
+import StudentSidebar from '@/components/StudentSidebar';
 import { 
   BarChart2, 
   Star, 
@@ -18,9 +19,9 @@ import {
 
 const StudentDashboard: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar placeholder - we'll create a separate component for this later */}
-      <div className="p-6 lg:ml-64">
+    <div className="min-h-screen bg-gray-50 flex">
+      <StudentSidebar />
+      <div className="flex-1 p-6 lg:ml-64">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-semibold mb-2">Welcome back, John!</h1>

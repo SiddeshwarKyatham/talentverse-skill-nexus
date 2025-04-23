@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -8,9 +8,25 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Navbar } from '@/components';
 import { ArrowLeft, User, Briefcase, Mail, Lock, CheckCircle, ShieldCheck } from 'lucide-react';
+import { toast } from "sonner";
 
 const Register: React.FC = () => {
   const [activeTab, setActiveTab] = useState('student');
+  const navigate = useNavigate();
+  
+  const handleStudentRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Registration successful!");
+    navigate('/student/dashboard');
+  };
+
+  const handleEmployerRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Registration successful!");
+    // For now, this will also redirect to the student dashboard
+    // Later we can create an employer dashboard
+    navigate('/student/dashboard');
+  };
   
   return (
     <>
@@ -40,22 +56,22 @@ const Register: React.FC = () => {
                 </TabsList>
                 
                 <TabsContent value="student">
-                  <form className="space-y-4">
+                  <form className="space-y-4" onSubmit={handleStudentRegister}>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="first-name">First name</Label>
-                        <Input id="first-name" placeholder="Enter your first name" />
+                        <Input id="first-name" placeholder="Enter your first name" required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="last-name">Last name</Label>
-                        <Input id="last-name" placeholder="Enter your last name" />
+                        <Input id="last-name" placeholder="Enter your last name" required />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input id="email" type="email" placeholder="you@example.com" className="pl-10" />
+                        <Input id="email" type="email" placeholder="you@example.com" className="pl-10" required />
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -66,6 +82,7 @@ const Register: React.FC = () => {
                           id="user-id" 
                           placeholder="Enter your unique user ID" 
                           className="pl-10" 
+                          required
                         />
                       </div>
                     </div>
@@ -73,44 +90,44 @@ const Register: React.FC = () => {
                       <Label htmlFor="password">Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input id="password" type="password" placeholder="Create a password" className="pl-10" />
+                        <Input id="password" type="password" placeholder="Create a password" className="pl-10" required />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="confirm-password">Confirm Password</Label>
-                      <Input id="confirm-password" type="password" placeholder="Confirm your password" />
+                      <Input id="confirm-password" type="password" placeholder="Confirm your password" required />
                     </div>
                     <Button type="submit" className="w-full bg-purple hover:bg-purple-dark">Register as Student</Button>
                   </form>
                 </TabsContent>
                 
                 <TabsContent value="employer">
-                  <form className="space-y-4">
+                  <form className="space-y-4" onSubmit={handleEmployerRegister}>
                     <div className="space-y-2">
                       <Label htmlFor="company-name">Company Name</Label>
-                      <Input id="company-name" placeholder="Enter your company name" />
+                      <Input id="company-name" placeholder="Enter your company name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="employer-name">Your Name</Label>
-                      <Input id="employer-name" placeholder="Enter your full name" />
+                      <Input id="employer-name" placeholder="Enter your full name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="employer-email">Email</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input id="employer-email" type="email" placeholder="company@example.com" className="pl-10" />
+                        <Input id="employer-email" type="email" placeholder="company@example.com" className="pl-10" required />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="employer-password">Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                        <Input id="employer-password" type="password" placeholder="Create a password" className="pl-10" />
+                        <Input id="employer-password" type="password" placeholder="Create a password" className="pl-10" required />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="employer-confirm-password">Confirm Password</Label>
-                      <Input id="employer-confirm-password" type="password" placeholder="Confirm your password" />
+                      <Input id="employer-confirm-password" type="password" placeholder="Confirm your password" required />
                     </div>
                     <Button type="submit" className="w-full bg-purple hover:bg-purple-dark">Register as Employer</Button>
                   </form>
@@ -147,4 +164,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
