@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Linkedin, GitHub, Mail } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 
 interface TeamMember {
   name: string;
@@ -119,7 +118,7 @@ const TeamSection: React.FC = () => {
                   )}
                   {member.social.github && (
                     <a href={member.social.github} className="text-gray-400 hover:text-purple transition-colors">
-                      <GitHub size={18} />
+                      <Github size={18} />
                     </a>
                   )}
                   {member.social.email && (
