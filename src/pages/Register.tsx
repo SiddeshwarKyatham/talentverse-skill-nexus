@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Navbar } from '@/components';
-import { ArrowLeft, User, Briefcase, Mail, Lock, CheckCircle } from 'lucide-react';
+import { ArrowLeft, User, Briefcase, Mail, Lock, CheckCircle, ShieldCheck } from 'lucide-react';
 
 const Register: React.FC = () => {
   const [activeTab, setActiveTab] = useState('student');
@@ -59,8 +59,15 @@ const Register: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="college-id">College ID</Label>
-                      <Input id="college-id" placeholder="Enter your college ID" />
+                      <Label htmlFor="user-id">User ID</Label>
+                      <div className="relative">
+                        <ShieldCheck className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                        <Input 
+                          id="user-id" 
+                          placeholder="Enter your unique user ID" 
+                          className="pl-10" 
+                        />
+                      </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="password">Password</Label>
@@ -140,3 +147,4 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
